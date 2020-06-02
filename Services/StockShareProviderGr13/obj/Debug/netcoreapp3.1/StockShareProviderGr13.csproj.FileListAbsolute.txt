@@ -1,0 +1,9 @@
+C:\Users\ejer\OneDrive - Aarhus universitet\7. Semester\ITONK\Slutprojekt\Services\StockShareProviderGr13\bin\Debug\netcoreapp3.1\appsettings.Development.json
+C:\Users\ejer\OneDrive - Aarhus universitet\7. Semester\ITONK\Slutprojekt\Services\StockShareProviderGr13\bin\Debug\netcoreapp3.1\appsettings.json
+C:\Users\ejer\OneDrive - Aarhus universitet\7. Semester\ITONK\Slutprojekt\Services\StockShareProviderGr13\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+C:\Users\ejer\OneDrive - Aarhus universitet\7. Semester\ITONK\Slutprojekt\Services\StockShareProviderGr13\obj\Debug\netcoreapp3.1\StockShareProviderGr13.csprojAssemblyReference.cache
+C:\Users\ejer\OneDrive - Aarhus universitet\7. Semester\ITONK\Slutprojekt\Services\StockShareProviderGr13\obj\Debug\netcoreapp3.1\staticwebassets\StockShareProviderGr13.StaticWebAssets.Manifest.cache
+C:\Users\ejer\OneDrive - Aarhus universitet\7. Semester\ITONK\Slutprojekt\Services\StockShareProviderGr13\obj\Debug\netcoreapp3.1\staticwebassets\StockShareProviderGr13.StaticWebAssets.xml
+C:\Users\ejer\OneDrive - Aarhus universitet\7. Semester\ITONK\Slutprojekt\Services\StockShareProviderGr13\obj\Debug\netcoreapp3.1\StockShareProviderGr13.AssemblyInfoInputs.cache
+C:\Users\ejer\OneDrive - Aarhus universitet\7. Semester\ITONK\Slutprojekt\Services\StockShareProviderGr13\obj\Debug\netcoreapp3.1\StockShareProviderGr13.AssemblyInfo.cs
+C:\Users\ejer\OneDrive - Aarhus universitet\7. Semester\ITONK\Slutprojekt\Services\StockShareProviderGr13\obj\Debug\netcoreapp3.1\StockShareProviderGr13.RazorTargetAssemblyInfo.cache
