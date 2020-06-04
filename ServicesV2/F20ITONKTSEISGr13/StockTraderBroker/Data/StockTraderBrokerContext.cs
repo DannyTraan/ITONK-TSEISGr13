@@ -7,13 +7,13 @@ using StockTraderBroker.Models;
 
 namespace StockTraderBroker.Data
 {
-    public class AppDbContext : DbContext
+    public class StockTraderBrokerContext : DbContext
     {
-        public AppDbContext (DbContextOptions<AppDbContext> options)
+        public StockTraderBrokerContext (DbContextOptions<StockTraderBrokerContext> options)
             : base(options)
         {
         }
 
-        public DbSet<StockTrade> StockTrades { get; set; }
+        public DbSet<StockTraderBroker.Models.StockTrade> StockTrade { get; set; }
     }
 }

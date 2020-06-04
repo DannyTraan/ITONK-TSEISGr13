@@ -13,8 +13,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using StockTraderBroker.Data;
-using StockTraderBroker.Repositories;
-using StockTraderBroker.Services;
 
 namespace StockTraderBroker
 {
@@ -31,20 +29,29 @@ namespace StockTraderBroker
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddScoped<IStockTraderBrokerService, StockTraderBrokerService>();
-            services.AddScoped<IStockTraderBrokerRepository, StockTraderBrokerRepository>();
-
-            services.AddDbContext<AppDbContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("AppDbContext")));
 
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "StockTraderBroker", Version = "v1" });
             });
+
+            services.AddDbContext<StockTraderBrokerContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("StockTraderBrokerContext")));
+
+            services.AddHttpClient("shareControl", c =>
+            {
+                //Remark below not using https but http
+                //c.BaseAddress = new Uri("http://" + shareControlHost + ":80/");
+
+                c.BaseAddress = new Uri("https://localhost:3000");
+
+                c.DefaultRequestHeaders.Add("Accept", "application/json");
+
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, AppDbContext context)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
 
             app.UseSwagger();
@@ -62,8 +69,6 @@ namespace StockTraderBroker
 
             app.UseHttpsRedirection();
             
-            context.Database.Migrate();
-
             app.UseRouting();
 
             app.UseAuthorization();

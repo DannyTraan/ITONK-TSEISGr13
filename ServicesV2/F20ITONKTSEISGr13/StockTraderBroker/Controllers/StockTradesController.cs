@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using StockTraderBroker.Data;
 using StockTraderBroker.Models;
 
@@ -14,25 +16,39 @@ namespace StockTraderBroker.Controllers
     [ApiController]
     public class StockTradesController : ControllerBase
     {
-        private readonly AppDbContext _context;
+        private readonly StockTraderBrokerContext _context;
+        private readonly HttpClient PublicShareControlClient;
+        private readonly HttpClient TobinTaxerServiceClient;
 
-        public StockTradesController(AppDbContext context)
+        public StockTradesController(IHttpClientFactory clientFactory, StockTraderBrokerContext context)
         {
+            PublicShareControlClient = clientFactory.CreateClient("shareControl");
             _context = context;
         }
 
         // GET: api/StockTrades
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<StockTrade>>> GetStockTrades()
+        public async Task<List<StockInformation>> GetStockTrade()
         {
-            return await _context.StockTrades.ToListAsync();
+            //var json = JsonConvert.SerializeObject(request);
+            //var httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+            var result = new List<StockInformation>();
+            using (var response = await PublicShareControlClient.GetAsync($"api/StockInformationsController"))
+            {
+
+                result = JsonConvert.DeserializeObject<List<StockInformation>>(
+                    await response.Content.ReadAsStringAsync()
+                );
+            }
+
+            return result;
         }
 
         // GET: api/StockTrades/5
         [HttpGet("{id}")]
         public async Task<ActionResult<StockTrade>> GetStockTrade(int id)
         {
-            var stockTrade = await _context.StockTrades.FindAsync(id);
+            var stockTrade = await _context.StockTrade.FindAsync(id);
 
             if (stockTrade == null)
             {
@@ -80,7 +96,7 @@ namespace StockTraderBroker.Controllers
         [HttpPost]
         public async Task<ActionResult<StockTrade>> PostStockTrade(StockTrade stockTrade)
         {
-            _context.StockTrades.Add(stockTrade);
+            _context.StockTrade.Add(stockTrade);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetStockTrade", new { id = stockTrade.Id }, stockTrade);
@@ -90,13 +106,13 @@ namespace StockTraderBroker.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<StockTrade>> DeleteStockTrade(int id)
         {
-            var stockTrade = await _context.StockTrades.FindAsync(id);
+            var stockTrade = await _context.StockTrade.FindAsync(id);
             if (stockTrade == null)
             {
                 return NotFound();
             }
 
-            _context.StockTrades.Remove(stockTrade);
+            _context.StockTrade.Remove(stockTrade);
             await _context.SaveChangesAsync();
 
             return stockTrade;
@@ -104,7 +120,7 @@ namespace StockTraderBroker.Controllers
 
         private bool StockTradeExists(int id)
         {
-            return _context.StockTrades.Any(e => e.Id == id);
+            return _context.StockTrade.Any(e => e.Id == id);
         }
     }
 }

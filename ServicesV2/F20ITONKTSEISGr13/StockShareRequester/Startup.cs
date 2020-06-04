@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,11 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
-using PublicShareOwnerControl.Data;
 
-namespace PublicShareOwnerControl
+namespace StockShareRequester
 {
     public class Startup
     {
@@ -29,14 +26,6 @@ namespace PublicShareOwnerControl
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
-            services.AddDbContext<PublicShareOwnerControlContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("PublicShareOwnerControlContext")));
-
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "PublicShareOwnerControl", Version = "v1" });
-            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,16 +45,6 @@ namespace PublicShareOwnerControl
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-            });
-
-            // Enable middleware to serve generated Swagger as a JSON endpoint.
-            app.UseSwagger();
-
-            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
-            // specifying the Swagger JSON endpoint.
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
         }
     }
