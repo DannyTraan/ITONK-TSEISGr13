@@ -16,12 +16,12 @@ namespace StockTransactionItems.Repositories
             _context = context;
         }
 
-        public List<Stock> GetListOfStocks()
+        public IEnumerable<Stock> GetListOfStocks()
         {
             return _context.Stocks.ToList();
         }
 
-        public Stock GetById(int id)
+        public Stock GetStockById(int id)
         {
             return id != 0 ? _context.Stocks.Find(id) : null;
         }
@@ -30,12 +30,16 @@ namespace StockTransactionItems.Repositories
         {
             if (stock == null) return;
             _context.Stocks.Add(stock);
-            _context.SaveChanges();
         }
 
         public void RemoveStock(int id)
         {
-            _context.Stocks.Remove(_context.Stocks.Find(id));
+            var stock = _context.Stocks.Find(id);
+            _context.Stocks.Remove(stock);
+        }
+
+        public void Save()
+        {
             _context.SaveChanges();
         }
     }
