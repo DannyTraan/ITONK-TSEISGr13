@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StockTransactionItems.Data;
 using StockTransactionItems.Models;
+using StockTransactionItems.Repositories;
 
 namespace StockTransactionItems.Controllers
 {
@@ -14,97 +14,44 @@ namespace StockTransactionItems.Controllers
     [ApiController]
     public class StocksController : ControllerBase
     {
-        private readonly StockTransactionItemsContext _context;
+        private IStockRepository _stockRepository;
 
-        public StocksController(StockTransactionItemsContext context)
+        public StocksController(IStockRepository stockRepository)
         {
-            _context = context;
+            _stockRepository = stockRepository;
         }
 
         // GET: api/Stocks
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Stock>>> GetStockItems()
+        public IEnumerable<Stock> GetAllStocks()
         {
-            return await _context.Stocks.ToListAsync();
+            return _stockRepository.GetListOfStocks();
         }
 
         // GET: api/Stocks/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Stock>> GetStock(int id)
+        public Stock GetStock(int id)
         {
-            var stock = await _context.Stocks.FindAsync(id);
-
-            if (stock == null)
-            {
-                return NotFound();
-            }
-
-            return stock;
-        }
-
-        // PUT: api/Stocks/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutStock(int id, Stock stock)
-        {
-            if (id != stock.StockId)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(stock).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!StockExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return _stockRepository.GetStockById(id);
         }
 
         // POST: api/Stocks
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Stock>> PostStock(Stock stock)
+        public IActionResult Post([FromBody]Stock stock)
         {
-            _context.Stocks.Add(stock);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetStock", new { id = stock.StockId }, stock);
+            _stockRepository.AddStock(stock);
+            _stockRepository.Save();
+            return Ok(stock);
         }
 
         // DELETE: api/Stocks/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Stock>> DeleteStock(int id)
+        public void DeleteStock(int id)
         {
-            var stock = await _context.Stocks.FindAsync(id);
-            if (stock == null)
-            {
-                return NotFound();
-            }
-
-            _context.Stocks.Remove(stock);
-            await _context.SaveChangesAsync();
-
-            return stock;
-        }
-
-        private bool StockExists(int id)
-        {
-            return _context.Stocks.Any(e => e.StockId == id);
+            _stockRepository.RemoveStock(id);
+            _stockRepository.Save();
         }
     }
 }
