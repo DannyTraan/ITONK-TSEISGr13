@@ -24,7 +24,7 @@ namespace StockTransactionItems
             services.AddControllers();
 
             services.AddDbContext<StockTransactionItemsContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("StockTransactionItemsContext")));
+                    options.UseSqlServer(Configuration.GetConnectionString("ItemsServiceName")));
 
             services.AddSwaggerGen(c =>
             {
@@ -33,7 +33,7 @@ namespace StockTransactionItems
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, StockTransactionItemsContext context)
         {
             app.UseSwagger();
 
@@ -53,6 +53,8 @@ namespace StockTransactionItems
             app.UseRouting();
 
             app.UseAuthorization();
+
+            context.Database.Migrate();
 
             app.UseEndpoints(endpoints =>
             {

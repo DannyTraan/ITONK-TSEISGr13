@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: f20itonktseisgr13items
+  labels:
+    app: f20itonktseisgr13items
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: f20itonktseisgr13items
+  template:
+    metadata:
+      labels:
+        app: f20itonktseisgr13items
+    spec:
+      containers:
+      - image: docker.io/stanie/itemsbackend:latest
+        imagePullPolicy: Always
+        name: itemsbackend
+        resources:
+          limits:
+            cpu: 200m
+            memory: 100Mi
+          requests:
+            cpu: 50m
+            memory: 5Mi
+        ports:
+          - containerPort: 80
+---
