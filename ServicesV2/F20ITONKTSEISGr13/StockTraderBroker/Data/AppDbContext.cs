@@ -14,6 +14,6 @@ namespace StockTraderBroker.Data
         {
         }
 
-        public DbSet<StockTraderBroker.Models.StockTrade> StockTrades { get; set; }
+        public DbSet<StockTrade> StockTrades { get; set; }
     }
 }

@@ -12,27 +12,27 @@ namespace StockTraderBroker.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class StockTraderBrokersController : ControllerBase
+    public class StockTradesController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public StockTraderBrokersController(AppDbContext context)
+        public StockTradesController(AppDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/StockTraderBrokers
+        // GET: api/StockTrades
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<StockTrade>>> GetStockTrade()
+        public async Task<ActionResult<IEnumerable<StockTrade>>> GetStockTrades()
         {
-            return await _context.StockTrade.ToListAsync();
+            return await _context.StockTrades.ToListAsync();
         }
 
-        // GET: api/StockTraderBrokers/5
+        // GET: api/StockTrades/5
         [HttpGet("{id}")]
         public async Task<ActionResult<StockTrade>> GetStockTrade(int id)
         {
-            var stockTrade = await _context.StockTrade.FindAsync(id);
+            var stockTrade = await _context.StockTrades.FindAsync(id);
 
             if (stockTrade == null)
             {
@@ -42,7 +42,7 @@ namespace StockTraderBroker.Controllers
             return stockTrade;
         }
 
-        // PUT: api/StockTraderBrokers/5
+        // PUT: api/StockTrades/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
@@ -74,29 +74,29 @@ namespace StockTraderBroker.Controllers
             return NoContent();
         }
 
-        // POST: api/StockTraderBrokers
+        // POST: api/StockTrades
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
         public async Task<ActionResult<StockTrade>> PostStockTrade(StockTrade stockTrade)
         {
-            _context.StockTrade.Add(stockTrade);
+            _context.StockTrades.Add(stockTrade);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetStockTrade", new { id = stockTrade.Id }, stockTrade);
         }
 
-        // DELETE: api/StockTraderBrokers/5
+        // DELETE: api/StockTrades/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<StockTrade>> DeleteStockTrade(int id)
         {
-            var stockTrade = await _context.StockTrade.FindAsync(id);
+            var stockTrade = await _context.StockTrades.FindAsync(id);
             if (stockTrade == null)
             {
                 return NotFound();
             }
 
-            _context.StockTrade.Remove(stockTrade);
+            _context.StockTrades.Remove(stockTrade);
             await _context.SaveChangesAsync();
 
             return stockTrade;
@@ -104,7 +104,7 @@ namespace StockTraderBroker.Controllers
 
         private bool StockTradeExists(int id)
         {
-            return _context.StockTrade.Any(e => e.Id == id);
+            return _context.StockTrades.Any(e => e.Id == id);
         }
     }
 }
