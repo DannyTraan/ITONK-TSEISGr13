@@ -31,7 +31,7 @@ namespace PublicShareOwnerControl
             services.AddControllers();
 
             services.AddDbContext<PublicShareOwnerControlContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("PublicShareOwnerControlContext")));
+                    options.UseSqlServer(Configuration.GetConnectionString("ClusterConnectionString")));
 
             services.AddSwaggerGen(c =>
             {
