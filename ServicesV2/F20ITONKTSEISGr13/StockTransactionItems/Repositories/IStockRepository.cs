@@ -7,11 +7,12 @@ using StockTransactionItems.Models;
 
 namespace StockTransactionItems.Repositories
 {
-    interface IStockRepository
+    public interface IStockRepository
     {
-        List<Stock> GetListOfStocks();
-        Stock GetById(int id);
+        IEnumerable<Stock> GetListOfStocks();
+        Stock GetStockById(int id);
         void AddStock(Stock stock);
         void RemoveStock(int id);
+        void Save();
     }
 }
