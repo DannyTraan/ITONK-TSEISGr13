@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using PublicShareOwnerControl.Models;
 using StockTraderBroker.Data;
 using StockTraderBroker.Models;
 
@@ -18,11 +19,11 @@ namespace StockTraderBroker.Controllers
     {
         private readonly StockTraderBrokerContext _context;
         private readonly HttpClient PublicShareControlClient;
-        private readonly HttpClient TobinTaxerServiceClient;
+        //private readonly HttpClient TobinTaxerServiceClient;
 
         public StockTradesController(IHttpClientFactory clientFactory, StockTraderBrokerContext context)
         {
-            PublicShareControlClient = clientFactory.CreateClient("shareControl");
+            PublicShareControlClient = clientFactory.CreateClient("psocclient");
             _context = context;
         }
 
@@ -44,6 +45,7 @@ namespace StockTraderBroker.Controllers
             return result;
         }
 
+        /*
         // GET: api/StockTrades/5
         [HttpGet("{id}")]
         public async Task<ActionResult<StockTrade>> GetStockTrade(int id)
@@ -57,7 +59,7 @@ namespace StockTraderBroker.Controllers
 
             return stockTrade;
         }
-
+        
         // PUT: api/StockTrades/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
@@ -122,5 +124,6 @@ namespace StockTraderBroker.Controllers
         {
             return _context.StockTrade.Any(e => e.Id == id);
         }
+        */
     }
 }

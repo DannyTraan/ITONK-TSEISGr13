@@ -38,7 +38,7 @@ namespace StockTraderBroker
             services.AddDbContext<StockTraderBrokerContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("StockTraderBrokerContext")));
 
-            services.AddHttpClient("shareControl", c =>
+            services.AddHttpClient("psocclient", c =>
             {
                 //Remark below not using https but http
                 //c.BaseAddress = new Uri("http://" + shareControlHost + ":80/");

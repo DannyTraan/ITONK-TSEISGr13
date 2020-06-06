@@ -21,5 +21,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="5.4.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PublicShareOwnerControl\PublicShareOwnerControl.csproj" />
+  </ItemGroup>
+
 
 </Project>

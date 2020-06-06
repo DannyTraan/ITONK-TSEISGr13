@@ -9,13 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TobinTaxerService", "TobinT
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublicShareOwnerControl", "PublicShareOwnerControl\PublicShareOwnerControl.csproj", "{477F3B3D-FEF1-470C-88CA-C98C5E713B4C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTransactionItems", "StockTransactionItems\StockTransactionItems.csproj", "{53730461-D31F-44E3-9BF3-8F5723C570C7}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTraderBroker", "StockTraderBroker\StockTraderBroker.csproj", "{8F602A63-58CF-4119-8530-255825A1141A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Users", "Users\Users.csproj", "{AC242EEB-CBB1-476B-9881-3E9AF74E87FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockShareRequester", "StockShareRequester\StockShareRequester.csproj", "{3678B64B-FE4F-46A5-8D77-2FE0585B17C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockShareRequester", "StockShareRequester\StockShareRequester.csproj", "{3678B64B-FE4F-46A5-8D77-2FE0585B17C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Users", "Users\Users.csproj", "{88868C76-9C0E-450E-81E9-20AD0123CCC9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,22 +33,18 @@ Global
 		{477F3B3D-FEF1-470C-88CA-C98C5E713B4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{477F3B3D-FEF1-470C-88CA-C98C5E713B4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{477F3B3D-FEF1-470C-88CA-C98C5E713B4C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{53730461-D31F-44E3-9BF3-8F5723C570C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{53730461-D31F-44E3-9BF3-8F5723C570C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{53730461-D31F-44E3-9BF3-8F5723C570C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{53730461-D31F-44E3-9BF3-8F5723C570C7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8F602A63-58CF-4119-8530-255825A1141A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8F602A63-58CF-4119-8530-255825A1141A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F602A63-58CF-4119-8530-255825A1141A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F602A63-58CF-4119-8530-255825A1141A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AC242EEB-CBB1-476B-9881-3E9AF74E87FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AC242EEB-CBB1-476B-9881-3E9AF74E87FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AC242EEB-CBB1-476B-9881-3E9AF74E87FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AC242EEB-CBB1-476B-9881-3E9AF74E87FB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3678B64B-FE4F-46A5-8D77-2FE0585B17C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3678B64B-FE4F-46A5-8D77-2FE0585B17C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3678B64B-FE4F-46A5-8D77-2FE0585B17C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3678B64B-FE4F-46A5-8D77-2FE0585B17C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88868C76-9C0E-450E-81E9-20AD0123CCC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88868C76-9C0E-450E-81E9-20AD0123CCC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88868C76-9C0E-450E-81E9-20AD0123CCC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88868C76-9C0E-450E-81E9-20AD0123CCC9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
