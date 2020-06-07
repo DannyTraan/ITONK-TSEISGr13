@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PublicShareOwnerControl.Data;
+using StockTraderBroker.Data;
 
-namespace PublicShareOwnerControl.Migrations
+namespace StockTraderBroker.Migrations
 {
-    [DbContext(typeof(PublicShareOwnerControlContext))]
-    partial class PublicShareOwnerControlContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(StockTraderBrokerContext))]
+    [Migration("20200607154152_changes")]
+    partial class changes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -18,9 +20,9 @@ namespace PublicShareOwnerControl.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("PublicShareOwnerControl.Models.StockInformation", b =>
+            modelBuilder.Entity("StockTraderBroker.Models.StockTrade", b =>
                 {
-                    b.Property<int>("StockId")
+                    b.Property<int>("StockTransactionId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -34,15 +36,18 @@ namespace PublicShareOwnerControl.Migrations
                     b.Property<int>("SellerId")
                         .HasColumnType("int");
 
-                    b.Property<string>("StockName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("StockId")
+                        .HasColumnType("int");
 
                     b.Property<double>("StockPrice")
                         .HasColumnType("float");
 
-                    b.HasKey("StockId");
+                    b.Property<double>("TaxAmount")
+                        .HasColumnType("float");
 
-                    b.ToTable("StockInformation");
+                    b.HasKey("StockTransactionId");
+
+                    b.ToTable("StockTrade");
                 });
 #pragma warning restore 612, 618
         }

@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PublicShareOwnerControl.Data;
+using StockShareProvider.Data;
 
-namespace PublicShareOwnerControl.Migrations
+namespace StockShareProvider.Migrations
 {
-    [DbContext(typeof(PublicShareOwnerControlContext))]
-    partial class PublicShareOwnerControlContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(StockShareProviderContext))]
+    [Migration("20200607200326_finalfix")]
+    partial class finalfix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -18,7 +20,7 @@ namespace PublicShareOwnerControl.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("PublicShareOwnerControl.Models.StockInformation", b =>
+            modelBuilder.Entity("StockShareProvider.Models.Stock", b =>
                 {
                     b.Property<int>("StockId")
                         .ValueGeneratedOnAdd()
@@ -42,7 +44,7 @@ namespace PublicShareOwnerControl.Migrations
 
                     b.HasKey("StockId");
 
-                    b.ToTable("StockInformation");
+                    b.ToTable("Stock");
                 });
 #pragma warning restore 612, 618
         }

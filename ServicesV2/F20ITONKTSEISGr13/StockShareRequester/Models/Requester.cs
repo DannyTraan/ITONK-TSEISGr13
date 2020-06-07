@@ -10,6 +10,8 @@ namespace StockShareRequester.Models
     {
         [Key]
         public int OwnerId { get; set; }
+        public int BuyerId { get; set; }
+        public int SellerId { get; set; }
         public double Balance { get; set; }
     }
 }

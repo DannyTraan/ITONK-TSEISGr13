@@ -40,13 +40,17 @@ namespace StockTraderBroker
 
             services.AddHttpClient("psocclient", c =>
             {
-                //Remark below not using https but http
-                //c.BaseAddress = new Uri("http://" + shareControlHost + ":80/");
-
                 c.BaseAddress = new Uri("https://localhost:3000");
 
                 c.DefaultRequestHeaders.Add("Accept", "application/json");
 
+            });
+
+            services.AddHttpClient("ssrcclient", c =>
+            {
+                c.BaseAddress = new Uri("https://localhost:3002");
+
+                c.DefaultRequestHeaders.Add("Accept", "application/json");
             });
         }
 

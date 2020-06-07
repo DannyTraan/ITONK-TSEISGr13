@@ -11,7 +11,10 @@ namespace StockTraderBroker.Models
         [Key]
         public int StockTransactionId { get; set; }
         public int StockId { get; set; }
+        public int OwnerId { get; set; }
+        public int BuyerId { get; set; }
+        public int SellerId { get; set; }
         public double StockPrice { get; set; }
-        public DateTime DatePurchased { get; set; }
+        public double TaxAmount { get; set; }
     }
 }

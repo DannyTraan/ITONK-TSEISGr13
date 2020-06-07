@@ -10,6 +10,9 @@ namespace StockShareProvider.Models
     {
         [Key]
         public int StockId { get; set; }
+        public int OwnerId { get; set; }
+        public int BuyerId { get; set; }
+        public int SellerId { get; set; }
         public double StockPrice { get; set; }
         public string StockName { get; set; }
     }
