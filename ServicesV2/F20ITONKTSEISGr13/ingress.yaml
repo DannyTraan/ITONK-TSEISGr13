@@ -1,10 +1,11 @@
+  
 kind: Ingress
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1
 metadata:
-  name: f20itonkingress-grp13
+  name: ingress-g13
   namespace: itonk-tseis-gr13
   annotations:
-    ingress.kubernetes.io/add-base-url: "true"
+    kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/rewrite-target: /$1
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/use-regex: 'true'
@@ -13,16 +14,26 @@ spec:
     - host: itonk-tseis-gr13.dk
       http:
         paths:
-          # (.*) Gør at der matches på alt hvad der står efter /backend/
-          # For mere information https://kubernetes.github.io/ingress-nginx/examples/rewrite/ 
-          - path: /backend/(.*)
+          - path: /currentStocks/(.*)
             backend:
-              serviceName: f20itonkingress-grp13
+              serviceName: psoc-service-gr13
               servicePort: 8080
-          - path: /(.*)
+          - path: /stockTaxing/(.*)
             backend:
-              serviceName: f20itonkingress-grp13
-              servicePort: 8080
+              serviceName: ttc-service-gr13
+              servicePort: 8081
+          - path: /requesters/(.*)
+            backend:
+              serviceName: ssr-service-gr13
+              servicePort: 8082
+          - path: /stockProviders/(.*)
+            backend:
+              serviceName: ssp-service-gr13
+              servicePort: 8083
+          - path: /transactions/(.*)
+            backend:
+              serviceName: stb-service-gr13
+              servicePort: 8084
 status:
   loadBalancer:
     ingress:
