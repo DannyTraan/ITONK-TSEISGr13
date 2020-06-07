@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: f20itonktseisgr13psoc
+  name: f20itonktseisgr13tts
   namespace: itonk-tseis-gr13
   labels:
-    app: f20itonktseisgr13psoc
+    app: f20itonktseisgr13tts
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: f20itonktseisgr13psoc
+      app: f20itonktseisgr13tts
   template:
     metadata:
       labels:
-        app: f20itonktseisgr13psoc
+        app: f20itonktseisgr13tts
     spec:
       containers:
-        - image: "docker.io/stanie/pso:latest"
+        - image: "docker.io/stanie/tts:latest"
           imagePullPolicy: Always
-          name: f20itonktseisgr13psoc
+          name: f20itonktseisgr13tts
           resources:
             limits:
               cpu: 200m
@@ -32,13 +32,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-    name: psoc-service-gr13  
+    name: ttc-service-g13  
     labels: 
 spec:
   selector:
-    app: f20itonktseisgr13psoc
+    app: f20itonktseisgr13tts
   ports:
     - protocol: TCP
-      port: 6971
+      port: 6973
       targetPort: 80
-  type: NodePort
+  type: LoadBalancer
