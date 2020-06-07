@@ -36,7 +36,10 @@ namespace StockTraderBroker
             });
 
             services.AddDbContext<StockTraderBrokerContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("StockTraderBrokerContext")));
+                options.UseSqlServer(Configuration.GetConnectionString("ClusterConnectionString")));
+
+            //services.AddDbContext<StockTraderBrokerContext>(options =>
+            //        options.UseSqlServer(Configuration.GetConnectionString("StockTraderBrokerContext")));
 
             services.AddHttpClient("psocclient", c =>
             {
