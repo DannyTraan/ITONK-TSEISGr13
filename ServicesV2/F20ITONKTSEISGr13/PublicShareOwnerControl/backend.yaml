@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: f20itonktseisgr13psoc
+  namespace: itonk-tseis-gr13
+  labels:
+    app: f20itonktseisgr13psoc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: f20itonktseisgr13psoc
+  template:
+    metadata:
+      labels:
+        app: f20itonktseisgr13psoc
+    spec:
+      containers:
+        - image: "docker.io/lostreidiotos/pso:v1"
+          imagePullPolicy: Always
+          name: f20itonktseisgr13psoc
+          resources:
+            limits:
+              cpu: 200m
+              memory: 128Mi
+            requests:
+              cpu: 50m
+              memory: 64Mi
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: pso-service-gr13  
+    labels: 
+spec:
+  selector:
+    app: f20itonktseisgr13psoc
+  ports:
+    - protocol: TCP
+      port: 6971
+      targetPort: 80
+  type: NodePort
