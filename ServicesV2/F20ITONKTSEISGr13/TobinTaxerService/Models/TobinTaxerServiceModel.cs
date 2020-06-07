@@ -8,9 +8,6 @@ namespace TobinTaxerService.Models
 {
     public class TobinTaxerServiceModel
     {
-        [Key]
-        public int TaxerId { get; set; }
-        public double Amount { get; set; }
         public double TaxAmount { get; set; }
     }
 }

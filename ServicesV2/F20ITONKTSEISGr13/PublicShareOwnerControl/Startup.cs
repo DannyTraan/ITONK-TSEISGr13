@@ -30,8 +30,11 @@ namespace PublicShareOwnerControl
         {
             services.AddControllers();
 
+            //services.AddDbContext<PublicShareOwnerControlContext>(options =>
+            //        options.UseSqlServer(Configuration.GetConnectionString("ClusterConnectionString")));
+
             services.AddDbContext<PublicShareOwnerControlContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("ClusterConnectionString")));
+                    options.UseSqlServer(Configuration.GetConnectionString("PublicShareOwnerControlContext")));
 
             services.AddSwaggerGen(c =>
             {
@@ -66,6 +69,7 @@ namespace PublicShareOwnerControl
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.RoutePrefix = string.Empty;
             });
         }
     }

@@ -3,46 +3,40 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PublicShareOwnerControl.Data;
+using StockShareRequester.Data;
 
-namespace PublicShareOwnerControl.Migrations
+namespace StockShareRequester.Migrations
 {
-    [DbContext(typeof(PublicShareOwnerControlContext))]
-    partial class PublicShareOwnerControlContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(StockShareRequesterContext))]
+    partial class StockShareRequesterContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "5.0.0-preview.4.20220.10")
+                .HasAnnotation("ProductVersion", "3.1.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("PublicShareOwnerControl.Models.StockInformation", b =>
+            modelBuilder.Entity("StockShareRequester.Models.Requester", b =>
                 {
-                    b.Property<int>("StockId")
+                    b.Property<int>("OwnerId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("BuyerId")
-                        .HasColumnType("int");
+                    b.Property<double>("Balance")
+                        .HasColumnType("float");
 
-                    b.Property<int>("OwnerId")
+                    b.Property<int>("BuyerId")
                         .HasColumnType("int");
 
                     b.Property<int>("SellerId")
                         .HasColumnType("int");
 
-                    b.Property<string>("StockName")
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("OwnerId");
 
-                    b.Property<double>("StockPrice")
-                        .HasColumnType("float");
-
-                    b.HasKey("StockId");
-
-                    b.ToTable("StockInformation");
+                    b.ToTable("Requester");
                 });
 #pragma warning restore 612, 618
         }

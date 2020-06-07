@@ -4,17 +4,16 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StockTraderBroker.Models
+namespace StockShareProvider.Models
 {
-    public class StockTrade
+    public class Stock
     {
         [Key]
-        public int StockTransactionId { get; set; }
         public int StockId { get; set; }
         public int OwnerId { get; set; }
         public int BuyerId { get; set; }
         public int SellerId { get; set; }
         public double StockPrice { get; set; }
-        public double TaxAmount { get; set; }
+        public string StockName { get; set; }
     }
 }
