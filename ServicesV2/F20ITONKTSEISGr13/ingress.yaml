@@ -2,7 +2,7 @@
 kind: Ingress
 apiVersion: networking.k8s.io/v1beta1
 metadata:
-  name: ingress-g13
+  name: f20itonkingressgr13
   namespace: itonk-tseis-gr13
   annotations:
     kubernetes.io/ingress.class: nginx
@@ -16,23 +16,23 @@ spec:
         paths:
           - path: /currentStocks/(.*)
             backend:
-              serviceName: psoc-service-gr13
+              serviceName: f20itonkservicegr13psoc
               servicePort: 8080
           - path: /stockTaxing/(.*)
             backend:
-              serviceName: ttc-service-gr13
+              serviceName: f20itonkservicegr13ttc
               servicePort: 8081
           - path: /requesters/(.*)
             backend:
-              serviceName: ssr-service-gr13
+              serviceName: f20itonkservicegr13ssr
               servicePort: 8082
           - path: /stockProviders/(.*)
             backend:
-              serviceName: ssp-service-gr13
+              serviceName: f20itonkservicegr13ssp
               servicePort: 8083
           - path: /transactions/(.*)
             backend:
-              serviceName: stb-service-gr13
+              serviceName: f20itonkservicegr13stb
               servicePort: 8084
 status:
   loadBalancer:

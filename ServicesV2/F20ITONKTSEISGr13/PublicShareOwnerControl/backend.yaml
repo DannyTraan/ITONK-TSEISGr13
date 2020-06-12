@@ -16,7 +16,7 @@ spec:
         app: f20itonktseisgr13psoc
     spec:
       containers:
-        - image: "docker.io/stanie/pso:latest"
+        - image: "docker.io/stanie/psoc:latest"
           imagePullPolicy: Always
           name: f20itonktseisgr13psoc
           resources:
@@ -32,13 +32,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-    name: psoc-service-gr13  
+    name: f20itonkservicegr13psoc  
     labels: 
 spec:
   selector:
     app: f20itonktseisgr13psoc
   ports:
     - protocol: TCP
-      port: 6971
+      port: 8080
       targetPort: 80
   type: NodePort

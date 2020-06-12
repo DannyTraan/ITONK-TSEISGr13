@@ -32,13 +32,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-    name: ttc-service-g13  
+    name: f20itonkservicegr13tts  
     labels: 
 spec:
   selector:
     app: f20itonktseisgr13tts
   ports:
     - protocol: TCP
-      port: 6973
+      port: 8081
       targetPort: 80
   type: LoadBalancer
