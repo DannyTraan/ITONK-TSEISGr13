@@ -40,7 +40,9 @@ namespace StockShareProvider
 
             services.AddHttpClient("psocclient", c =>
             {
-                c.BaseAddress = new Uri("https://localhost:3000");
+                c.BaseAddress = new Uri("http://104.199.71.127:8080/");
+
+                //c.BaseAddress = new Uri("https://localhost:3000");
 
                 c.DefaultRequestHeaders.Add("Accept", "application/json");
 

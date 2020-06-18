@@ -34,7 +34,9 @@ namespace TobinTaxerService
 
             services.AddHttpClient("ssrcclient", c =>
             {
-                c.BaseAddress = new Uri("https://localhost:3002");
+                c.BaseAddress = new Uri("http://35.241.233.42:8082");
+
+                //c.BaseAddress = new Uri("https://localhost:3002");
 
                 c.DefaultRequestHeaders.Add("Accept", "application/json");
 

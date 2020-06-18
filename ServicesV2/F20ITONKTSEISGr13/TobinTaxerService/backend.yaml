@@ -32,8 +32,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-    name: f20itonkservicegr13tts  
-    labels: 
+    name: f20itonkservicegr13tts
+    namespace: itonk-tseis-gr13
+    labels:
+      app: f20itonktseisgr13tts
 spec:
   selector:
     app: f20itonktseisgr13tts

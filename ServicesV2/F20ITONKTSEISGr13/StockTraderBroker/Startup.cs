@@ -39,11 +39,13 @@ namespace StockTraderBroker
                 options.UseSqlServer(Configuration.GetConnectionString("ClusterConnectionString")));
 
             //services.AddDbContext<StockTraderBrokerContext>(options =>
-            //        options.UseSqlServer(Configuration.GetConnectionString("StockTraderBrokerContext")));
+            //       options.UseSqlServer(Configuration.GetConnectionString("StockTraderBrokerContext")));
 
             services.AddHttpClient("psocclient", c =>
             {
-                c.BaseAddress = new Uri("https://localhost:3000");
+                c.BaseAddress = new Uri("http://104.199.71.127:8080/");
+
+                //c.BaseAddress = new Uri("https://localhost:3000");
 
                 c.DefaultRequestHeaders.Add("Accept", "application/json");
 
@@ -51,7 +53,9 @@ namespace StockTraderBroker
 
             services.AddHttpClient("ssrcclient", c =>
             {
-                c.BaseAddress = new Uri("https://localhost:3002");
+                c.BaseAddress = new Uri("http://35.241.233.42:8082/");
+
+                //c.BaseAddress = new Uri("https://localhost:3002");
 
                 c.DefaultRequestHeaders.Add("Accept", "application/json");
             });

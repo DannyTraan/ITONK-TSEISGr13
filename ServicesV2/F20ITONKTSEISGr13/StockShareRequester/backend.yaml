@@ -32,8 +32,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-    name: f20itonkservicegr13ssr  
-    labels: 
+    name: f20itonkservicegr13ssr
+    namespace: itonk-tseis-gr13
+    labels:
+      app: f20itonktseisgr13ssr
 spec:
   selector:
     app: f20itonktseisgr13ssr
@@ -41,4 +43,4 @@ spec:
     - protocol: TCP
       port: 8082
       targetPort: 80
-  type: NodePort
+  type: LoadBalancer
