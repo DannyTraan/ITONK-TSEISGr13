@@ -37,9 +37,6 @@ namespace StockShareRequester
 
             services.AddDbContext<StockShareRequesterContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("ClusterConnectionString")));
-
-            //services.AddDbContext<StockShareRequesterContext>(options =>
-            //        options.UseSqlServer(Configuration.GetConnectionString("StockShareRequesterContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

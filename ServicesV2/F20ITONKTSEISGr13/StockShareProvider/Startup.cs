@@ -28,6 +28,8 @@ namespace StockShareProvider
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var psoc = Configuration["Services:PublicShareOwnerControl"];
+
             services.AddControllers();
 
             services.AddSwaggerGen(c =>
@@ -40,7 +42,7 @@ namespace StockShareProvider
 
             services.AddHttpClient("psocclient", c =>
             {
-                c.BaseAddress = new Uri("http://34.76.151.178:8080/");
+                c.BaseAddress = new Uri("http://" + psoc + ":8080/");
 
                 //c.BaseAddress = new Uri("https://localhost:3000");
 

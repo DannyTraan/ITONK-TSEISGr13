@@ -33,9 +33,6 @@ namespace PublicShareOwnerControl
             services.AddDbContext<PublicShareOwnerControlContext>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("ClusterConnectionString")));
 
-            //services.AddDbContext<PublicShareOwnerControlContext>(options =>
-            //        options.UseSqlServer(Configuration.GetConnectionString("PublicShareOwnerControlContext")));
-
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PublicShareOwnerControl", Version = "v1" });

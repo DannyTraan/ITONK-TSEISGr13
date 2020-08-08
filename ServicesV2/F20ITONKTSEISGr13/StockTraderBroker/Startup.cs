@@ -28,6 +28,9 @@ namespace StockTraderBroker
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var psoc = Configuration["Services:PublicShareOwnerControl"];
+            var ssr = Configuration["Services:StockShareRequester"];
+
             services.AddControllers();
 
             services.AddSwaggerGen(c =>
@@ -43,7 +46,7 @@ namespace StockTraderBroker
 
             services.AddHttpClient("psocclient", c =>
             {
-                c.BaseAddress = new Uri("http://34.76.151.178:8080/");
+                c.BaseAddress = new Uri("http://" + psoc + ":8080/");
 
                 //c.BaseAddress = new Uri("https://localhost:3000");
 
@@ -53,7 +56,7 @@ namespace StockTraderBroker
 
             services.AddHttpClient("ssrcclient", c =>
             {
-                c.BaseAddress = new Uri("http://35.241.156.128:8082/");
+                c.BaseAddress = new Uri("http://" + ssr + ":8082/");
 
                 //c.BaseAddress = new Uri("https://localhost:3002");
 
