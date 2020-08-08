@@ -1,0 +1,112 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gr13-mssql-server
+  namespace: itonk-tseis-gr13
+  labels:
+    app: mssql-gr13
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mssql-gr13
+  template:
+    metadata:
+      labels:
+        app: mssql-gr13
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: mssql-gr13
+        image: mcr.microsoft.com/mssql/server:2017-latest
+        resources:
+          limits:
+            memory: 2Gi
+          requests:
+            memory: 1300M  
+        ports:
+        - containerPort: 1433
+        env:
+        - name: MSSQL_PID
+          value: "Developer"
+        - name: ACCEPT_EULA
+          value: "Y"
+        - name: SA_PASSWORD
+          value: "Gr13qwe123" 
+        - name: MSSQL_DATA_DIR
+          value: /var/opt/mssql/mdf
+        - name: MSSQL_LOG_DIR
+          value: /var/opt/mssql/ldf        
+        volumeMounts:
+        - name: gr13-mssql-base-volume
+          mountPath: /var/opt/mssql
+        - name: gr13-mssql-ldf-volume
+          mountPath: /var/opt/mssql/ldf
+        - name: gr13-mssql-mdf-volume
+          mountPath: /var/opt/mssql/mdf
+      volumes:
+      - name: gr13-mssql-base-volume
+        persistentVolumeClaim:
+          claimName: gr13-mssql-base-volume
+      - name: gr13-mssql-mdf-volume
+        persistentVolumeClaim:
+          claimName: gr13-mssql-mdf-volume
+      - name: gr13-mssql-ldf-volume
+        persistentVolumeClaim:
+          claimName: gr13-mssql-ldf-volume		
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gr13-mssql-server-service
+  namespace: itonk-tseis-gr13
+spec:
+  selector:
+    app: mssql-gr13
+  ports:
+    - protocol: TCP
+      port: 1433
+      targetPort: 1433
+  type: LoadBalancer
+
+---
+
+#mssql base volume claim: mssql-base-volume.yaml
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: gr13-mssql-base-volume
+  namespace: itonk-tseis-gr13
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 8Gi
+---
+#mssql data volume claim: mssql-mdf-volume.yaml
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: gr13-mssql-mdf-volume
+  namespace: itonk-tseis-gr13
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 8Gi
+---
+#mssql logs volume claim: mssql-ldf-volume.yaml   
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: gr13-mssql-ldf-volume
+  namespace: itonk-tseis-gr13
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 4Gi    

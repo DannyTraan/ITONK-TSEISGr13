@@ -36,11 +36,11 @@ namespace StockShareProvider
             });
 
             services.AddDbContext<StockShareProviderContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("StockShareProviderContext")));
+                    options.UseSqlServer(Configuration.GetConnectionString("ClusterConnectionString")));
 
             services.AddHttpClient("psocclient", c =>
             {
-                c.BaseAddress = new Uri("http://104.199.71.127:8080/");
+                c.BaseAddress = new Uri("http://34.76.151.178:8080/");
 
                 //c.BaseAddress = new Uri("https://localhost:3000");
 

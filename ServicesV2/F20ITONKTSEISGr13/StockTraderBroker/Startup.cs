@@ -43,7 +43,7 @@ namespace StockTraderBroker
 
             services.AddHttpClient("psocclient", c =>
             {
-                c.BaseAddress = new Uri("http://104.199.71.127:8080/");
+                c.BaseAddress = new Uri("http://34.76.151.178:8080/");
 
                 //c.BaseAddress = new Uri("https://localhost:3000");
 
@@ -53,7 +53,7 @@ namespace StockTraderBroker
 
             services.AddHttpClient("ssrcclient", c =>
             {
-                c.BaseAddress = new Uri("http://35.241.233.42:8082/");
+                c.BaseAddress = new Uri("http://35.241.156.128:8082/");
 
                 //c.BaseAddress = new Uri("https://localhost:3002");
 
