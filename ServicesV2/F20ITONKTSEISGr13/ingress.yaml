@@ -1,6 +1,5 @@
-  
-kind: Ingress
 apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
 metadata:
   name: f20itonkingressgr13
   namespace: itonk-tseis-gr13
@@ -14,23 +13,23 @@ spec:
     - host: itonk-tseis-gr13.dk
       http:
         paths:
-          - path: /currentStocks/(.*)
+          - path: /currentStocks/
             backend:
               serviceName: f20itonkservicegr13psoc
               servicePort: 8080
-          - path: /stockTaxing/(.*)
+          - path: /stockTaxing/
             backend:
-              serviceName: f20itonkservicegr13ttc
+              serviceName: f20itonkservicegr13tts
               servicePort: 8081
-          - path: /requesters/(.*)
+          - path: /requesters/
             backend:
               serviceName: f20itonkservicegr13ssr
               servicePort: 8082
-          - path: /stockProviders/(.*)
+          - path: /stockProviders/
             backend:
               serviceName: f20itonkservicegr13ssp
               servicePort: 8083
-          - path: /transactions/(.*)
+          - path: /transactions/
             backend:
               serviceName: f20itonkservicegr13stb
               servicePort: 8084
